@@ -1,0 +1,91 @@
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: bind
+#   namespace: dns
+#   labels:
+#     name: bind
+# spec:
+#   containers:
+#     - name: bind9
+#       image: "labbsr0x/dns-bind9"
+#       ports:
+#         - containerPort: 53
+#           protocol: UDP
+#       resources:
+#         limits:
+#           memory: "2048Mi"
+#           cpu: "500m"
+#       volumeMounts:
+#         - mountPath: /data
+#           name: data
+#   initContainers:
+#     - name: inir-config
+#       image: busybox
+#       command: ['sh', '-c', 'cp /config/* /data/']
+#       volumeMounts:
+#         - name: config
+#           mountPath: /config
+#         - name: data
+#           mountPath: /data
+#   volumes:
+#     - name: data
+#       emptyDir: {}
+#     - name: config
+#       configMap:
+#         name: config
+# ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bind9-deployment
+  namespace: dns
+  labels:
+    name: bind9
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: bind9
+  template:
+    metadata:
+      labels:
+        name: bind9
+    spec:
+      containers:
+        - name: bind9
+          imagePullPolicy: Always
+          image: "labbsr0x/dns-bind9"
+          ports:
+            - containerPort: 53
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      initContainers:
+      - name: iniy-config
+        image: alpine/git
+        # command: ['sh', '-c', 'cp /config/* /data/']
+        command: 
+          - "sh"
+          - "-c"
+          - |
+              git clone https://github.com/labbsr0x/docker-dns-bind9.git && \
+              cp -r ./docker-dns-bind9/example/primary/bind /data && \
+              cp /config/db.example.com /data/bind/etc/db.example.com 
+        volumeMounts:
+          - name: config
+            mountPath: /config
+          - name: data
+            mountPath: /data
+      volumes:
+        - name: data
+          emptyDir: {}
+        - name: config
+          configMap:
+            name: config
+              
+        

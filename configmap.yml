@@ -1,0 +1,9 @@
+kubectl create configmap config \
+    --namespace dns  \
+    --from-file bind.keys \
+    --from-file db.example.com \
+    --from-file db.local \
+    --from-file db.root \
+    --from-file named.conf \
+    --from-file named.conf.default-zones \
+    --from-file named.conf.options 
