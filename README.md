@@ -187,17 +187,17 @@ Set volume path in **docker-compose.yml**
     - /opt/bind9/primary:/data # Change volume path
 ```
 
-Rename zone file **db.example.com** to name of desired zone.
+Rename zone file **db.cloudth.com** to name of desired zone.
 
-In this example we will rename **db.example.com** to **db.newdomain.com**
+In this example we will rename **db.cloudth.com** to **db.newdomain.com**
 
 ```bash
-mv /opt/bind9/primary/bind/etc/db.example.com /opt/bind9/primary/bind/etc/db.novodominio.com
+mv /opt/bind9/primary/bind/etc/db.cloudth.com /opt/bind9/primary/bind/etc/db.novodominio.com
 ```
 
-In zone file change everywhere that are **example.com** to new zone and setup IP.
+In zone file change everywhere that are **cloudth.com** to new zone and setup IP.
 
-In this example we will change **example.com** to **newdomain.com**
+In this example we will change **cloudth.com** to **newdomain.com**
 
 ```yml
 ;
@@ -222,7 +222,7 @@ ns2             A       10.0.10.2   ; Change to the desired NS2 IP
 
 Config the new db file and new zone in  **named.conf.default-zones**.
 
-In this example we will change **example.com** to **newdomain.com** and the file path **db.example.com** to **db.newdomain.com** and set Secondary DNS IP in allow-transfer.
+In this example we will change **cloudth.com** to **newdomain.com** and the file path **db.cloudth.com** to **db.newdomain.com** and set Secondary DNS IP in allow-transfer.
 
 ```yml
 ...
@@ -231,7 +231,7 @@ zone "newdomain.com" { // Change to desired zone
         file "/etc/bind/db.newdomain.com"; // Change to zone file path
         allow-transfer {10.0.10.2; };        // Change to Secondary DNS IP
 //      allow-update {
-//          key "example.com";
+//          key "cloudth.com";
 //  };
 };
 ...
@@ -275,7 +275,7 @@ Set volume path in **docker-compose.yml**
 
 Config the new db file and new zone in  **named.conf.default-zones**.
 
-In this example we will change **example.com** to **newdomain.com** and the file path **db.example.com** to **db.newdomain.com** and set Primary DNS IP in master field.
+In this example we will change **cloudth.com** to **newdomain.com** and the file path **db.cloudth.com** to **db.newdomain.com** and set Primary DNS IP in master field.
 
 ```yml
 ...

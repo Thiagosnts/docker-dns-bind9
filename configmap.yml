@@ -1,7 +1,7 @@
 kubectl create configmap config \
     --namespace dns  \
     --from-file bind.keys \
-    --from-file db.example.com \
+    --from-file db.cloudth.com \
     --from-file db.local \
     --from-file db.root \
     --from-file named.conf \

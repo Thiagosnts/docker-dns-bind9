@@ -12,9 +12,9 @@ zone "localhost" {
 	file "/etc/bind/db.local";
 };
 
-zone "example.com" {  // Change to desired zone
+zone "cloudth.com" {  // Change to desired zone
 	type slave;
-	file "/etc/bind/db.example.com";	// Change to zone file path
+	file "/etc/bind/db.cloudth.com";	// Change to zone file path
 	masters {192.168.0.1;};				// Change to Primary DNS IP
 };
 

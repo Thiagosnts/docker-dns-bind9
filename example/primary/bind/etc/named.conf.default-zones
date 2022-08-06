@@ -1,4 +1,4 @@
-//key "example.com" {
+//key "cloudth.com" {
 //	algorithm hmac-md5;
 //	secret "BD077oHTdwm6Kwm4pc5tBkrX6EW3RErIOIESKpIKP6vQHAPRYp+9ubig Fvl3gYuuib+DQ8+eCpHEe/rIy9tiIg==";
 //};
@@ -17,12 +17,12 @@ zone "localhost" {
 	file "/etc/bind/db.local";
 };
 
-zone "example.com" { // Change to desired zone
+zone "cloudth.com" { // Change to desired zone
 	type master;
-	file "/etc/bind/db.example.com";	// Change to zone file path
+	file "/etc/bind/db.cloudth.com";	// Change to zone file path
 	allow-transfer {192.168.0.2; };		// Change to Secondary DNS IP
 //	allow-update {
-//          key "example.com";
+//          key "cloudth.com";
 //  };
 };
 
