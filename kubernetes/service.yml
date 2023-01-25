@@ -8,7 +8,7 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - port: 53
+    - port: 54
       targetPort: 53
       protocol: UDP
   selector:

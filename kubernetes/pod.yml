@@ -73,7 +73,7 @@ spec:
           - "sh"
           - "-c"
           - |
-              git clone https://github.com/labbsr0x/docker-dns-bind9.git && \
+              git clone https://github.com/Thiagosnts/docker-dns-bind9.git && \
               cp -r ./docker-dns-bind9/example/primary/bind /data && \
               cp /config/db.cloudth.com /data/bind/etc/db.cloudth.com 
         volumeMounts:
